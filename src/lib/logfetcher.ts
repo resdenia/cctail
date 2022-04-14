@@ -59,8 +59,7 @@ const logfetcher = {
 			url += '/' + url_suffix;
 		}
 
-		// solution for securityLogs
-		if (profile.log_path && securityRequest) {
+		if (profile.log_security && securityRequest) {
 			url = `https://${profile.hostname}/on/demandware.servlet/webdav/Sites/Securitylogs`;
 		}
 
@@ -136,13 +135,13 @@ const logfetcher = {
 			let res;
 			let securityLog;
 
-			if (profile.log_path && profile.log_path === "all") {
+			if (profile.log_security && profile.log_security === "all") {
 				securityLog = true;
 				let resSite = await this.makeRequest(profile, 'GET', logpath, headers, debug);
 				let resSecurity = await this.makeRequest(profile, 'GET', logpath, headers, debug, securityLog);
 				res = { ...resSite, ...resSecurity };
 			}
-			if (profile.log_path && profile.log_path === "security") {
+			if (profile.log_security && profile.log_security === "security") {
 				securityLog = true;
 				res = await this.makeRequest(profile, 'GET', logpath, headers, debug, securityLog);
 			} else {
