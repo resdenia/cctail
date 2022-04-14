@@ -59,6 +59,7 @@ const logfetcher = {
 			url += '/' + url_suffix;
 		}
 
+		// solution for securityLogs
 		if (profile.log_path && securityRequest) {
 			url = `https://${profile.hostname}/on/demandware.servlet/webdav/Sites/Securitylogs`;
 		}
